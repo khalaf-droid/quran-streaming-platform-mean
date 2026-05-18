@@ -1,21 +1,21 @@
-# 📖 Quran Streaming & Learning Platform (MEAN Stack)
+#  Quran Streaming & Learning Platform (MEAN Stack)
 > **A secure, highly reactive, production-grade Quran audio streaming and learning platform powered by Angular 19, Express.js, Node.js, and MongoDB.**
 
 ---
 
-### 🚀 Production-Grade Features & Recent Hardening
+###  Production-Grade Features & Recent Hardening
 
 This platform has undergone rigorous technical auditing and production hardening to ensure state consistency, high security, and seamless UI/UX:
 
-- **⚡ Modern Reactive Frontend (Angular 19 Signals):** Replaced legacy local state variables with centralized Angular **Signals** (`computed()`, `signal()`) inside `AuthService` for instant, global cross-component UI synchronization (favorites, follows) without layout shifts or flashes.
-- **🛡️ Multi-layered Security (Express Backend):** 
+- ** Modern Reactive Frontend (Angular 19 Signals):** Replaced legacy local state variables with centralized Angular **Signals** (`computed()`, `signal()`) inside `AuthService` for instant, global cross-component UI synchronization (favorites, follows) without layout shifts or flashes.
+- ** Multi-layered Security (Express Backend):** 
   - **Rate Limiting:** Mitigated brute-force attacks via `express-rate-limit` on authentication (`authLimiter`) and api actions (`apiLimiter`).
   - **Input Sanitization:** Deployed strict request validators using `express-validator` to guarantee payload integrity.
   - **Account Takeover Protection:** Hardened profile and password updates to verify current credentials with `bcrypt` before allowing mutations.
-- **💾 Concurrency & Database Integrity (MongoDB/Mongoose):**
+- ** Concurrency & Database Integrity (MongoDB/Mongoose):**
   - **Atomic Updates:** Replaced standard increments with `$inc` operations for likes and follows to eliminate race conditions under high load.
   - **Performance Indexing:** Configured Mongoose indexes on high-traffic read fields (`likes`, `followers`, `createdAt`) for lightning-fast queries.
-- **✨ Premium UI/UX Consistency:** 
+- ** Premium UI/UX Consistency:** 
   - **Centralized Error UX:** Global `errorInterceptor` intercepts 4xx/5xx requests and translates them into elegant, user-friendly notifications via a customized `ToastService`.
   - **Smooth Skeletons:** Implemented shimming HTML skeleton loaders during API hydration to eliminate jarring visual flashes.
   - **Interactive Empty States:** Reusable `EmptyStateComponent` guides guests and users across search, profile, and favorites.
