@@ -1,0 +1,37 @@
+<div class="page active">
+  <div *ngIf="isLoading()" style="text-align:center; padding: 40px; color: var(--gold-light);">جاري التحميل...</div>
+  <div *ngIf="error()" style="text-align:center; padding: 40px; color: red;">{{ error() }}</div>
+
+  <ng-container *ngIf="!isLoading() && !error() && surah()">
+    <!-- SURAH HERO -->
+    <div class="surah-hero">
+      <div class="surah-hero-glow"></div>
+      <div class="surah-big-arabic">{{ surah().titleArabic }}</div>
+      <div class="surah-big-name">{{ surah().title }}</div>
+      <div class="surah-meta-row">
+        <div class="meta-pill">رقم السورة: {{ surah().surahNumber }}</div>
+        <div class="meta-pill">{{ surah().revelationType === 'Meccan' ? 'مكية' : 'مدنية' }}</div>
+        <div class="meta-pill">آياتها: {{ surah().numberOfAyahs }}</div>
+        <div class="meta-pill">الجزء: {{ surah().juz }}</div>
+      </div>
+    </div>
+
+    <!-- BISMILLAH -->
+    <div class="bismillah-box" *ngIf="surah().surahNumber !== 9">
+      <div class="bismillah-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    </div>
+
+    <!-- RECITATIONS SECTION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">التلاوات المتاحة</div>
+      </div>
+      <div class="recitation-list" *ngIf="surah().recitations && surah().recitations.length > 0; else noRecitations">
+        <app-recitation-item *ngFor="let rec of surah().recitations" [recitation]="rec"></app-recitation-item>
+      </div>
+      <ng-template #noRecitations>
+        <div style="text-align:center; padding: 20px; color: var(--text-muted);">لا توجد تلاوات متاحة لهذه السورة حالياً</div>
+      </ng-template>
+    </div>
+  </ng-container>
+</div>

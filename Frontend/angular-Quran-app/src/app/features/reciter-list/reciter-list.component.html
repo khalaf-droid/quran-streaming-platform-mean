@@ -1,0 +1,24 @@
+<div class="page active" style="padding-top: 20px;">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">قراء القرآن الكريم</div>
+    </div>
+
+    <div *ngIf="isLoading()" style="text-align:center; padding: 40px; color: var(--gold-light);">جاري التحميل...</div>
+    <div *ngIf="error()" style="text-align:center; padding: 40px; color: red;">{{ error() }}</div>
+
+    <div class="reciters-grid" *ngIf="!isLoading() && !error()">
+      <app-reciter-card 
+        *ngFor="let reciter of reciters()" 
+        [reciter]="reciter"
+        [routerLink]="['/reciters', reciter._id]"
+        style="cursor: pointer;">
+      </app-reciter-card>
+    </div>
+
+    <div *ngIf="!isLoading() && !error() && reciters().length === 0" 
+         style="text-align:center; padding: 40px; color: var(--text-muted);">
+      لا يوجد قراء حالياً
+    </div>
+  </div>
+</div>

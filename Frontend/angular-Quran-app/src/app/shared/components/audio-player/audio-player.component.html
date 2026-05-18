@@ -1,0 +1,94 @@
+@if (audioService.currentTrack()) {
+  <div class="audio-player-container">
+    
+    <!-- Track Info (Left) -->
+    <div class="player-left">
+      <div class="track-cover-container">
+        <img 
+          [src]="audioService.currentTrack()?.coverImage || 'assets/images/default-cover.jpg'" 
+          alt="Cover" 
+          class="track-cover"
+        />
+        <!-- Playing animation overlay -->
+        @if (audioService.isPlaying()) {
+          <div class="playing-overlay">
+            <div class="wave-animation">
+              <div class="wave-bar bar-1"></div>
+              <div class="wave-bar bar-2"></div>
+              <div class="wave-bar bar-3"></div>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="track-info">
+        <span class="track-title font-arabic">{{ audioService.currentTrack()?.title }}</span>
+        <span class="track-reciter">{{ audioService.currentTrack()?.reciter?.name || 'Unknown Reciter' }}</span>
+      </div>
+    </div>
+
+    <!-- Controls (Center) -->
+    <div class="player-center">
+      <div class="main-controls">
+        <button class="control-btn" title="Previous">
+          <i class="fas fa-step-backward"></i>
+        </button>
+
+        <button 
+          (click)="togglePlay()" 
+          class="play-pause-btn"
+        >
+          @if (audioService.isPlaying()) {
+            <i class="fas fa-pause"></i>
+          } @else {
+            <i class="fas fa-play" style="margin-left: 3px;"></i>
+          }
+        </button>
+
+        <button class="control-btn" title="Next">
+          <i class="fas fa-step-forward"></i>
+        </button>
+      </div>
+
+      <div class="timeline-container">
+        <span class="time-text">{{ audioService.formattedCurrentTime() }}</span>
+        
+        <div class="progress-wrapper">
+          <input 
+            type="range" 
+            min="0" 
+            [max]="audioService.duration() || 100" 
+            [value]="audioService.currentTime()" 
+            (input)="onSeek($event)"
+            class="progress-input"
+          >
+          <div class="progress-fill" [style.width.%]="audioService.progressPercent()"></div>
+        </div>
+
+        <span class="time-text">{{ audioService.formattedDuration() }}</span>
+      </div>
+    </div>
+
+    <!-- Right Controls (Volume & Extra) -->
+    <div class="player-right">
+      <button class="control-btn" title="Favorite">
+        <i class="fas fa-heart"></i>
+      </button>
+
+      <div class="volume-container">
+        <i class="fas fa-volume-up" style="color: #9ca3af; font-size: 14px;"></i>
+        <div class="progress-wrapper">
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            [value]="audioService.volume()" 
+            (input)="onVolumeChange($event)"
+            class="progress-input"
+          >
+          <div class="progress-fill" [style.width.%]="audioService.volume() * 100"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

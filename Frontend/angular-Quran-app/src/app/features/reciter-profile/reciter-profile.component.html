@@ -1,0 +1,58 @@
+<div class="page active">
+  <div *ngIf="isLoading()" style="text-align:center; padding: 40px; color: var(--gold-light);">جاري التحميل...</div>
+  <div *ngIf="error()" style="text-align:center; padding: 40px; color: red;">{{ error() }}</div>
+
+  <ng-container *ngIf="!isLoading() && !error() && reciter()">
+    <!-- RECITER HERO -->
+    <div class="reciter-hero">
+      <div class="reciter-big-avatar"
+           [style.background-image]="getImageUrl() ? 'url(' + getImageUrl() + ')' : ''"
+           style="background-size: cover; background-position: center;">
+        <span *ngIf="!getImageUrl()">🎙️</span>
+        <div class="verified-big" *ngIf="reciter()!.isVerified">✓</div>
+      </div>
+      <div class="reciter-info">
+        <div class="reciter-big-name">{{ reciter()!.name }}</div>
+        <div class="reciter-big-style">
+          <span class="style-tag" *ngFor="let style of reciter()!.styles">{{ style }}</span>
+        </div>
+        <div class="reciter-stats">
+          <div class="rstat">
+            <div class="rstat-num">{{ reciter()!.followers || 0 }}</div>
+            <div class="rstat-label">متابع</div>
+          </div>
+          <div class="rstat">
+            <div class="rstat-num">{{ recitations().length }}</div>
+            <div class="rstat-label">تلاوة</div>
+          </div>
+        </div>
+        <button class="big-follow-btn" [class.following]="isFollowing" (click)="toggleFollow()">
+          {{ isFollowing ? 'متابَع ✓' : 'متابعة' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- BIO -->
+    <div class="section" *ngIf="reciter()!.bio">
+      <div class="section-header">
+        <div class="section-title">نبذة عن القارئ</div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; padding: 0 4px;">
+        {{ reciter()!.bio }}
+      </p>
+    </div>
+
+    <!-- RECITATIONS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">أبرز التلاوات</div>
+      </div>
+      <div class="recitation-list" *ngIf="recitations().length > 0; else noRecitations">
+        <app-recitation-item *ngFor="let rec of recitations()" [recitation]="rec"></app-recitation-item>
+      </div>
+      <ng-template #noRecitations>
+        <div style="text-align:center; padding: 20px; color: var(--text-muted);">لا توجد تلاوات متاحة لهذا القارئ حالياً</div>
+      </ng-template>
+    </div>
+  </ng-container>
+</div>

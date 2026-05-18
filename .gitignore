@@ -1,0 +1,127 @@
+# =====================
+# Dependencies
+# =====================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =====================
+# Environment Variables
+# =====================
+.env
+.env.*
+!.env.example
+
+# =====================
+# Logs
+# =====================
+logs/
+*.log
+
+# =====================
+# Runtime files
+# =====================
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# =====================
+# Coverage / Testing
+# =====================
+coverage/
+.nyc_output/
+
+# =====================
+# Build output
+# =====================
+dist/
+build/
+
+# =====================
+# Uploads (local files)
+# =====================
+uploads/
+tmp/
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Editor / IDE
+# =====================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =====================
+# Docker (optional)
+# =====================
+docker-compose.override.yml
+
+# =====================
+# MongoDB local files (if any)
+# =====================
+*.wt
+*.lock
+WiredTiger*
+
+# =====================
+# Nodemon
+# =====================
+nodemon.json
+
+# =====================
+# TypeScript (if used later)
+# =====================
+*.tsbuildinfo
+
+# =====================
+# User Requested Ignored Files & Folders
+# =====================
+# AI Agents & IDE Cache (Root level)
+.agents/
+.gemini/
+brain/
+artifacts/
+skills-lock.json
+README2.md
+DESIGN.md
+
+# Frontend Specifics (Consolidated)
+Frontend/angular-Quran-app/ui-ux-pro-max-skill/
+Frontend/angular-Quran-app/everything-claude-code/
+Frontend/angular-Quran-app/.agents/
+Frontend/angular-Quran-app/.claude/
+Frontend/angular-Quran-app/docs/
+Frontend/angular-Quran-app/server/
+Frontend/angular-Quran-app/dist/
+Frontend/angular-Quran-app/tmp/
+Frontend/angular-Quran-app/out-tsc/
+Frontend/angular-Quran-app/bazel-out/
+Frontend/angular-Quran-app/node_modules/
+Frontend/angular-Quran-app/.angular/cache/
+Frontend/angular-Quran-app/.sass-cache/
+Frontend/angular-Quran-app/connect.lock
+Frontend/angular-Quran-app/coverage/
+Frontend/angular-Quran-app/libpeerconnection.log
+Frontend/angular-Quran-app/testem.log
+Frontend/angular-Quran-app/typings/
+Frontend/angular-Quran-app/.history/
+Frontend/angular-Quran-app/src/app/services/
+Frontend/angular-Quran-app/src/app/editor/
+Frontend/angular-Quran-app/src/app/components/text-gen/
+
+# Backend Specifics
+Backend/upload/
+Backend/seed-*.js
+Backend/*seed*.js
+
+# Explicit Agents/Skills overrides
+.agents/skills/
